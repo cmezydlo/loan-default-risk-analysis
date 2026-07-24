@@ -30,8 +30,6 @@ Horizon's data structure consists of two csv files containing borrower profiles 
 | Analysis.ipynb | Exploratory analysis |
 | Assess and Clean Data.ipynb | Data cleaning and preprocessing |
 | README.md | Project documentation |
-| .pkl | Intermediate save point file |
-| .ipynb_checkpoints/ | Automated JupyterLab saves |
 | images/ | Charts used in README |
 | other/ | Other files used in analysis |
 | zzz archive/ | Older versions of files |
