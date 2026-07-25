@@ -1,0 +1,4 @@
+
+sites on default rates
+https://www.investopedia.com/terms/d/defaultrate.asp
+https://www.investopedia.com/terms/d/defaultrisk.asp
