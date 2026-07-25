@@ -7,6 +7,10 @@ Management at Horizon Financial Group (a mid-sized consumer lending company) is 
 ## Executive Summary
 Horizon Financial Group would like to reduce their default rate by half (from 24.3% to 12%). The top three factors related to default rate are credit score, debt-to-interest (DTI) ratio, and interest rate. After exploring the data for these factors, we recommend loan approvals be restricted to applications with credit scores at or above 600, DTI ratios under 41%, and interest rates under 14%. By implementing these guidelines, Horizon can reduce their default rating to 12.0%.
 
+<p align="center">
+    <img src = "images/Winning%20Combination.png" width="400">
+</p>
+
 ## Business Problem
 Horizon's current default rate is nearly 25%, nearly twice their goal of 12%. Defaulted loans are lost funds (including repayment of loaned monies due and interest) to a lender, thus higher default rates are costly to lenders and can also affect the lender's reputation. To reduce default rate, lenders assess who they are loaning to (do any characteristics predict default?) and what types of loans are being approved (do specific loan purposes have an elevated risk?) to identify guidelines related to non-defaulting conditions for future loans.
 
