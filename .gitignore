@@ -32,3 +32,6 @@ desktop.ini
 
 #
 *.pkl
+
+# folder to exclude
+zzz archive/
