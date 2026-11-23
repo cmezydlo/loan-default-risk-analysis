@@ -5,7 +5,7 @@ Management at Horizon Financial Group (a mid-sized consumer lending company) is 
 
 ---
 ## Executive Summary
-Horizon Financial Group would like to reduce their default rate by half (from 24.3% to 12%). The top three factors related to default rate are credit score, debt-to-interest (DTI) ratio, and interest rate. After exploring the data for these factors, we recommend loan approvals be restricted to applications with credit scores at or above 600, DTI ratios under 41%, and interest rates under 14%. By implementing these guidelines, Horizon can reduce their default rating to 12.0%.
+Horizon Financial Group would like to reduce their default rate by half (from 24.3% to 12%). The top three factors related to default rate are credit score, debt-to-income (DTI) ratio, and interest rate. After exploring the data for these factors, we recommend loan approvals be restricted to applications with credit scores at or above 600, DTI ratios under 41%, and interest rates under 14%. By implementing these guidelines, Horizon can reduce their default rate to 12.0%.
 
 <p align="center">
     <img src = "images/Winning%20Combination.png" width="400">
@@ -32,7 +32,7 @@ Horizon's current default rate is nearly 25%, nearly twice their goal of 12%. De
 | zzz archive/ | Older versions of files |
 
 ## Dataset
-Horizon's data structure consists of two csv files containing borrower profiles and loan application data, with a total row count of 1101 records. A description of each file is as follows:
+Horizon's data structure consists of two csv files containing borrower profiles and loan application data, with a total row count of 1,101 records (500 borrowers and 601 loan applications). A description of each file is as follows:
 - **Borrower Profiles**: Contains a list of borrowers with demographic information.
 - **Loan Applications**: Contains a list of all loans associated with each borrower ID.
 
@@ -50,7 +50,7 @@ Horizon's data structure consists of two csv files containing borrower profiles 
 * Columns within each dataframe were assessed using pandas and seaborn bar and histogram plots to determine data value ranges, distribution of the values within the dataset, and determine which columns would benefit from binning for later analysis.
 * Joined borrower and loan dataframes into one dataframe on borrower_id.
 
-The Python notebook used to inspect, clean, and prepare the data for this analysis can be found in the [Assess and Clean Data notebook](https://github.com/cmezydlo/Loan_Analysis/blob/main/Assess%20and%20Clean%20Data.ipynb).
+The Python notebook used to inspect, clean, and prepare the data for this analysis can be found in the [Assess and Clean Data notebook](https://github.com/cmezydlo/loan-default-risk-analysis/blob/main/Assess%20and%20Clean%20Data.ipynb).
 
 ## Exploratory Data Analysis
 * Created new columns for binned values: credit scores, DTI ratios, years employed, interest rates, ages
@@ -61,27 +61,27 @@ The Python notebook used to inspect, clean, and prepare the data for this analys
 * Calculated correlation to defaulted
 * Quick logistic regression comparing defaulted with credit score, interest rate, and DTI ratio
 * Assessed combinations of credit score, DTI ratio and interest rate for smallest default rate with largest loan amount
-The Python notebook used to explore the data and analyze relationships can be found in the [Analysis notebook](https://github.com/cmezydlo/Loan_Analysis/blob/main/Analysis.ipynb)
+The Python notebook used to explore the data and analyze relationships can be found in the [Analysis notebook](https://github.com/cmezydlo/loan-default-risk-analysis/blob/main/Analysis.ipynb)
 
 ## Key Findings
-* **Credit Score**
+* **Credit Score**  
    ![Credit Score Default Rate](images/avg_def_by_cred_score.png)
     * **Only credit scores of 750 or greater meet the 12% default rate goal.** Nearly 40% of Horizon's current loans fall into this category of borrowers. While this group is the best option to loan to, limiting loans to only this group would reduce the number of loans by 60%.
-    * **Credit scores between 520-599 have the highest default ratings.** This group has a 49.6% default rate and accounts for nearly 20% of Horizon's current loans.  
+    * **Credit scores between 520-599 have the highest default rates.** This group has a 49.6% default rate and accounts for nearly 20% of Horizon's current loans.  
     * **Low credit scores greatly impact default rates.**
       | Credit Score Group | Default Rate|
       | :---: | :---: |
       | 520-599 | 49.6% |
       | 600-699 | 28.4% |
       | 700+ | 12.9% |
-* **Debt-to-Income Ratio**
+* **Debt-to-Income Ratio**  
     ![Debt to Income Ratio Default Rate](images/avg_def_by_dti.png)
     * **Horizon has granted more dollars in loans to borrowers with 51% or greater DTI ratios.** This category accounts for 45% of all loans and 64% of all defaulting loans.
     * **To hit a 12% default goal, Horizon would need to restrict DTI to 25% or less.** This would reduce the number of loans by 87%.
     * **High DTI combined with low credit scores relates to higher default rates.** Comparing credit score and DTI allows us to identify ranges that align with the 12% goal (such as above 700 credit score and DTI less than 35%) and exposes similar pockets of favorable default rates in nearby combinations that could be leveraged with further refinement.
         * ![Default Rate by Credit Score and DTI](images/dti_credScore_heatmap.png)
-* **Interest Rate**
-    ![Interest Rate Default Rate](images/avg_def_rate_by_int_rate.png)
+* **Interest Rate**  
+    ![Interest Rate Default Rate](images/Avg_def_rate_by_int_rate.png)
     * **On its own, interest rate is not enough to reduce default rate.** Most of the default rates by interest rate range are higher than the goal. Interest rates in the 8% group do have a favorable default rate, but this is because the data within this group includes the larges number of the best credit scores and lowest DTI ratios.
     * **Interest rates greater than 15% have the highest default rates.** Interest rate has a positive correlation to default; however, the correlation is likely due to the significant jump in default rate at the 14% interest rate group.
       | Interest Group | Avg default rate|
@@ -89,12 +89,12 @@ The Python notebook used to explore the data and analyze relationships can be fo
       | <14% | 21% |
       | >14% | 56% |
     * **The average and median interest rate of about 10.5% is due to its frequence across all credit score groups.** The lowest credit scores have minimum interest rates in the 10% group which overlaps with interest rates granted to the highest credit scores which have maximum interest rates in the 12% group.
-* **Loan Purpose**
+* **Loan Purpose**  
     ![Loan Purpose Default Rate](images/avg_def_by_purpose.png)
     * **All loan purposes exceed the 12% goal.** There is no specific purpose that can be ruled out. 
     * **Loan purpose alone is not very helpful.** However, assessing purpose with default rate, count, and average loan amount can help Underwriters understand Horizon's exposure for specific loans. Home Improvement loans are the second highest default rate by loan purpose, and they are also the most common type of loan approved, they make up the largest amount of total amount loaned, and have the second highest average loan amount.
        * ![Loan Purpose counts](images/purpose_counts.png)
-* **Employment**
+* **Employment**  
     ![Employment Length Default Rate](images/avg_def_by_emp_length.png)
     * **Very short employment length relates to higher default rate.** Borrowers with less than 2 years of employment have a 34.5% default rate, which is double the rate of borrowers with 2-5 years of employment length. This higher default rate is likely due to borrowers starting off their credit history and having less job security.
     * **2-5 years is timeframe with the lowest default rate.** This may be due to borrowers having better job security and some credit history.
